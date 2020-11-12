@@ -43,7 +43,7 @@ ENV PHP_MEMORY_LIMIT 2G
 VOLUME /root/.composer/cache
 
 # Get composer installed to /usr/local/bin/composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.17 --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -LO https://deployer.org/deployer.phar && chmod +x ./deployer.phar && mv ./deployer.phar /usr/local/bin/dep
 RUN ["chmod", "+x", "/usr/local/bin/dep"]
