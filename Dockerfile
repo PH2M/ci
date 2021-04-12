@@ -1,6 +1,6 @@
-FROM php:7.3-cli
+FROM php:7.4.15-cli
 
-LABEL PH2M <contact@ph2m.com>
+MAINTAINER PH2M <contact@ph2m.com>
 
 # Install dependencies
 RUN apt-get update \
@@ -18,10 +18,15 @@ RUN apt-get update \
     rsyslog \
     default-mysql-client \
     git \
-    libzip-dev
+    libzip-dev \
+    libonig-dev
 
+# Configure the gd library
+RUN docker-php-ext-configure \
+    gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 
 # Install required PHP extensions
+
 RUN docker-php-ext-install \
     dom \
     gd \
@@ -32,16 +37,7 @@ RUN docker-php-ext-install \
     zip \
     soap \
     bcmath \
-    calendar \
     pcntl
-
-
-# Configure the gd library
-RUN docker-php-ext-configure \
-    gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-
-RUN docker-php-ext-configure \
-    calendar
 
 ENV PHP_MEMORY_LIMIT 2G
 
