@@ -1,4 +1,4 @@
-FROM php:7.4.15-cli
+FROM php:7.4.28-cli
 
 MAINTAINER PH2M <contact@ph2m.com>
 
@@ -49,7 +49,7 @@ ENV PHP_MEMORY_LIMIT 2G
 VOLUME /root/.composer/cache
 
 # Get composer installed to /usr/local/bin/composer
-RUN curl -sS https://getcomposer.org/installer | php -- --version=2.1.14 --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --version=2.2.9 --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -LO https://deployer.org/deployer.phar && chmod +x ./deployer.phar && mv ./deployer.phar /usr/local/bin/dep
 RUN ["chmod", "+x", "/usr/local/bin/dep"]
