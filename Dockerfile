@@ -50,7 +50,7 @@ VOLUME /root/.composer/cache
 # Get composer installed to /usr/local/bin/composer
 RUN curl -sS https://getcomposer.org/installer | php -- --version=2.5.1 --install-dir=/usr/local/bin --filename=composer
 
-RUN curl -LO https://deployer.org/deployer.phar && chmod +x ./deployer.phar && mv ./deployer.phar /usr/local/bin/dep
+RUN curl -O https://deployer.org/releases/v7.5.12/deployer.phar && chmod +x ./deployer.phar && mv ./deployer.phar /usr/local/bin/dep
 RUN ["chmod", "+x", "/usr/local/bin/dep"]
 
 CMD ["bash"]
