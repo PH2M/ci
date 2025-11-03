@@ -1,25 +1,26 @@
-FROM php:8.2-cli
+FROM php:8.3-cli
 
 MAINTAINER PH2M <contact@ph2m.com>
 
 # Install dependencies
 RUN apt-get update \
-  && apt-get install -y \
-    libfreetype6-dev \
-    libicu-dev \
-    libjpeg62-turbo-dev \
-    libmcrypt-dev \
-    libpng-dev \
-    libxslt1-dev \
-    sendmail-bin \
-    sendmail \
-    sudo \
-    cron \
-    rsyslog \
-    default-mysql-client \
-    git \
-    libzip-dev \
-    libonig-dev
+      && apt-get install -y \
+        libfreetype6-dev \
+        libicu-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        libxslt1-dev \
+        libsodium-dev \
+        sendmail-bin \
+        sendmail \
+        sudo \
+        cron \
+        rsyslog \
+        default-mysql-client \
+        git \
+        libzip-dev \
+        libonig-dev
 
 # Configure the gd library
 RUN docker-php-ext-configure \
@@ -48,7 +49,7 @@ ENV PHP_MEMORY_LIMIT 2G
 VOLUME /root/.composer/cache
 
 # Get composer installed to /usr/local/bin/composer
-RUN curl -sS https://getcomposer.org/installer | php -- --version=2.5.1 --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --version=2.8.12 --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -O https://deployer.org/releases/v7.5.12/deployer.phar && chmod +x ./deployer.phar && mv ./deployer.phar /usr/local/bin/dep
 RUN ["chmod", "+x", "/usr/local/bin/dep"]
