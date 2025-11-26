@@ -19,7 +19,14 @@ RUN apt-get update \
     default-mysql-client \
     git \
     libzip-dev \
-    libonig-dev
+    libonig-dev \
+    rsync \
+    curl \
+    gnupg
+
+# Install Node.js 18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+  && apt-get install -y nodejs
 
 # Configure the gd library
 RUN docker-php-ext-configure \
