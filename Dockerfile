@@ -38,7 +38,8 @@ RUN docker-php-ext-install \
   bcmath \
   calendar \
   sockets \
-  pcntl
+  pcntl \
+  ftp
 
 
 RUN docker-php-ext-configure \
