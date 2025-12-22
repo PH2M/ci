@@ -20,7 +20,12 @@ RUN apt-get update \
         default-mysql-client \
         git \
         libzip-dev \
-        libonig-dev
+        libonig-dev \
+        rsync
+
+# Install Node.js 24
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
+  && apt-get install -y nodejs
 
 # Configure the gd library
 RUN docker-php-ext-configure \
