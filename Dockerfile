@@ -18,6 +18,7 @@ RUN apt-get update \
     rsyslog \
     default-mysql-client \
     git \
+    rsync \
     libzip-dev \
     libonig-dev
 
