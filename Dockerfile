@@ -19,7 +19,8 @@ RUN apt-get update \
     default-mysql-client \
     git \
     libzip-dev \
-    libonig-dev
+    libonig-dev \
+    rsync
 
 # Configure the gd library
 RUN docker-php-ext-configure \
