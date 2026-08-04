@@ -21,6 +21,7 @@ RUN apt-get update \
     git \
     libzip-dev \
     libonig-dev \
+    libssl-dev \
     rsync \
     curl \
     gnupg
@@ -32,6 +33,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 # Configure the gd library
 RUN docker-php-ext-configure \
   gd --with-freetype --with-jpeg
+
+RUN docker-php-ext-configure ftp --with-ftp-ssl
 
 # Install required PHP extensions
 RUN docker-php-ext-install \
@@ -45,7 +48,8 @@ RUN docker-php-ext-install \
   bcmath \
   calendar \
   sockets \
-  pcntl
+  pcntl \
+  ftp
 
 
 RUN docker-php-ext-configure \
