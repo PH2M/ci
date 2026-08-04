@@ -1,4 +1,4 @@
-FROM php:8.1-cli
+FROM php:8.4-cli
 
 MAINTAINER PH2M <contact@ph2m.com>
 
@@ -11,6 +11,7 @@ RUN apt-get update \
     libmcrypt-dev \
     libpng-dev \
     libxslt1-dev \
+    libsodium-dev \
     sendmail-bin \
     sendmail \
     sudo \
@@ -55,7 +56,7 @@ ENV PHP_MEMORY_LIMIT 2G
 VOLUME /root/.composer/cache
 
 # Get composer installed to /usr/local/bin/composer
-RUN curl -sS https://getcomposer.org/installer | php -- --version=2.5.1 --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --version=2.8.12 --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -O https://deployer.org/releases/v7.5.12/deployer.phar && chmod +x ./deployer.phar && mv ./deployer.phar /usr/local/bin/dep
 RUN ["chmod", "+x", "/usr/local/bin/dep"]
